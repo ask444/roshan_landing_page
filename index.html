@@ -868,18 +868,19 @@
                            <span class="d-block lead">E: <a href="javascript:;">support@foxegraph.com</a></span>
                            <span class="d-block lead ">T: (513) 352-3209 </span>
                         </div>
-                        <form>
+                        <form  id="myform" method="post" action="http://localhost:8000/api/usersregistration">
                            <div class="form-group">
-                              <input class="form-control" placeholder="Your Name" type="text">
+                              <input class="form-control" name="name" placeholder="Your Name" type="text">
                            </div>
                            <div class="form-group">
-                              <input class="form-control" placeholder="Your Email" type="email">
+                              <input class="form-control" name="email" placeholder="Your Email" type="email">
                            </div>
                            <div class="form-group">
-                              <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                              <textarea class="form-control" name="message" rows="4" placeholder="Your Message"></textarea>
                            </div>
                            <div>
-                              <button class="btn btn-primary" type="submit">Send Message</button>
+                              <button id="mybutton" class="btn btn-primary">Send Message</button>
+                               <!-- <input type="button" id="mybutton" value="Submit"> -->
                            </div>
                         </form>
                      </div>
@@ -1166,6 +1167,33 @@
       <script src="js/script.js"></script>
       <!-- Google analytics -->
       <!-- End google analytics -->
+      <script type="text/javascript">
+         
+         $(document).ready(function () {
+             // $( "#button" ).click(function() {
+             //     $( "#form" ).submit();
+             // });
+
+             $('#mybutton').click( function() {
+            alert("WRRWR");
+
+               debugger;
+    $.ajax({
+        url: 'http://localhost:8000/api/usersregistration',
+        type: 'post',
+        dataType: 'json',
+        data: $('form#myform').serialize(),
+        success: function(data) {
+         alert("sdfsfdsf");
+         debugger;
+                   ... do something with the data...
+                 }
+    });
+});
+
+});
+
+      </script>
    </body>
 </html>
 
