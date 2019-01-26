@@ -868,7 +868,8 @@
                            <span class="d-block lead">E: <a href="javascript:;">support@foxegraph.com</a></span>
                            <span class="d-block lead ">T: (513) 352-3209 </span>
                         </div>
-                        <form  id="myform" method="post" action="http://localhost:8000/api/usersregistration">
+                        <!-- <form  id="myform" method="post" action="http://localhost:8000/api/usersregistration"> -->
+                           <form id="myForm">
                            <div class="form-group">
                               <input class="form-control" name="name" placeholder="Your Name" type="text">
                            </div>
@@ -879,7 +880,8 @@
                               <textarea class="form-control" name="message" rows="4" placeholder="Your Message"></textarea>
                            </div>
                            <div>
-                              <button id="mybutton" class="btn btn-primary">Send Message</button>
+                                 <input type="submit" name="click" class="btn btn-primary" value="send message" />
+                              <!-- <button id="mybutton" class="btn btn-primary">Send Message</button> -->
                                <!-- <input type="button" id="mybutton" value="Submit"> -->
                            </div>
                         </form>
@@ -1170,26 +1172,48 @@
       <script type="text/javascript">
          
          $(document).ready(function () {
+
+
+            $("#myForm").submit(function(event){
+                event.preventDefault();
+                $.ajax({
+                    method: 'POST',
+                    url: 'http://localhost:8000/api/usersregistrationsubmit.php',
+                    dataType: "json",
+                    contentType: "application/json",
+                    data : $('#myForm').serialize(),
+                    success: function(data){
+                        alert(data);
+                    },
+                    error: function(xhr, desc, err){
+                        console.log(err);
+                    }
+                });
+            });
+
+
+
+
+
              // $( "#button" ).click(function() {
              //     $( "#form" ).submit();
              // });
 
-             $('#mybutton').click( function() {
-            alert("WRRWR");
+//              $('#mybutton').click( function() {
+//             alert("WRRWR");
 
-               debugger;
-    $.ajax({
-        url: 'http://localhost:8000/api/usersregistration',
-        type: 'post',
-        dataType: 'json',
-        data: $('form#myform').serialize(),
-        success: function(data) {
-         alert("sdfsfdsf");
-         debugger;
-                   ... do something with the data...
-                 }
-    });
-});
+//                debugger;
+//     $.ajax({
+//         url: 'http://localhost:8000/api/usersregistration',
+//         type: 'post',
+//         dataType: 'json',
+//         data: $('form#myform').serialize(),
+//         success: function(data) {
+//          alert("sdfsfdsf");
+//          debugger;
+//                  }
+//     });
+// });
 
 });
 
