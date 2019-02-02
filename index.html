@@ -477,8 +477,8 @@
                         <span class="d-block lead">E: <a href="javascript:;">support@foxegraph.com</a></span>
                         <span class="d-block lead ">T: (513) 352-3209 </span>
                      </div>
-                     <!-- <form  id="myform" method="post" action="http://localhost:8000/api/usersregistration"> -->
-                     <form id="myForm">
+                     <form id="myform" method="post" action="http://minmapadmin.herokuapp.com/api/usersregistration">
+                        <!-- <form id="myForm"> -->
                         <div class="form-group">
                            <input class="form-control" name="name" placeholder="Your Name" type="text">
                         </div>
@@ -486,14 +486,38 @@
                            <input class="form-control" name="email" placeholder="Your Email" type="email">
                         </div>
                         <div class="form-group">
+                           <input class="form-control" name="phone" placeholder="Your Phone Number" id="phone" type="text" /><br />
+                        </div>
+                        <div class="form-group">
+                           Gender: <input name="gender" type="radio" value="male">Male
+                           <input name="gender" type="radio" value="female">Female<br />
+                        </div>
+
+                        <div class="form-group">
                            <textarea class="form-control" name="message" rows="4" placeholder="Your Message"></textarea>
                         </div>
                         <div>
-                           <input type="submit" name="click" class="btn btn-primary" value="send message" />
-                           <!-- <button id="mybutton" class="btn btn-primary">Send Message</button> -->
+                           <!-- <input type="submit" name="click" class="btn btn-primary" value="send message" /> -->
+                           <button id="mybutton" class="btn btn-primary">Send Message</button>
                            <!-- <input type="button" id="mybutton" value="Submit"> -->
                         </div>
                      </form>
+                     <!-- testing form -->
+                     <form id="myForm" method="post">
+                        Name: <input name="name" id="name" type="text" /><br />
+                        Email: <input name="email" id="email" type="text" /><br />
+                        Phone No:<input name="phone" id="phone" type="text" /><br />
+                        Gender: <input name="gender" type="radio" value="male">Male
+                        <input name="gender" type="radio" value="female">Female<br />
+
+                        <input type="button" id="submitFormData" onclick="SubmitFormData();" value="Submit" />
+                     </form>
+                     <!-- end of form -->
+
+
+
+
+
                   </div>
                </div>
             </div>
@@ -712,16 +736,51 @@
    <!-- End google analytics -->
    <script type="text/javascript">
 
+
+
+
+      function SubmitFormData() {
+         debugger;
+         var name = $("#name").val();
+         var email = $("#email").val();
+         var phone = $("#phone").val();
+         var gender = $("input[type=radio]:checked").val();
+         // $.post("http://localhost:8000/api/usersregistration", { name: name, email: email, phone: phone, gender: gender },
+         //    function (data) {
+         //       debugger;
+         //       $('#results').html(data);
+         //       $('#myForm')[0].reset();
+         //    });
+         // var host = "http://localhost:8000"
+
+         var host = "http://minmapadmin.herokuapp.com";
+
+         $.ajax({
+            type: "POST",
+            url: host + '/api/usersregistration',
+            dataType: 'jsonp',
+            data: { name: name, email: email, phone: phone, gender: gender },
+            success: function (msg) {
+               alert(msg);
+            }
+         });
+
+
+
+      }
+
       $(document).ready(function () {
 
 
          $("#myForm").submit(function (event) {
+            debugger;
             event.preventDefault();
+            var url = "http://minmapadmin.herokuapp.com";
             $.ajax({
                method: 'POST',
-               url: 'http://localhost:8000/api/usersregistrationsubmit.php',
-               dataType: "json",
-               contentType: "application/json",
+               url: url + '/api/usersregistration',
+               dataType: "jsonp",
+               // contentType: "application/json",
                data: $('#myForm').serialize(),
                success: function (data) {
                   alert(data);
