@@ -798,5 +798,8 @@ div[class*="col-"].space-double-sm,
         max-width: 85%;
     }
 }
-
+.logo-css{
+    height: 70px;
+    width: 100px;
+}
 /*End mediaqueries*/

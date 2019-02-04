@@ -9061,6 +9061,7 @@ a.text-danger:hover, a.text-danger:focus {
 
 .text-light {
   color: #f5f8fb !important;
+  text-align: justify;
 }
 
 a.text-light:hover, a.text-light:focus {
