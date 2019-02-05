@@ -9061,7 +9061,10 @@ a.text-danger:hover, a.text-danger:focus {
 
 .text-light {
   color: #f5f8fb !important;
-  text-align: justify !important;
+  text-align: -webkit-auto !important;
+}
+.address-logo-css{
+  height: 32px;
 }
 
 a.text-light:hover, a.text-light:focus {
