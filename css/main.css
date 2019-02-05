@@ -802,4 +802,7 @@ div[class*="col-"].space-double-sm,
     height: 70px;
     width: 100px;
 }
+.logo-drivi-css{
+    height: 45px;
+}
 /*End mediaqueries*/
